@@ -1,6 +1,7 @@
 import os
 
 import discord
+import datetime
 from dotenv import load_dotenv
 import random
 
@@ -25,6 +26,12 @@ class CustomClient(discord.Client):
         if message.content == 'coinflip':
             response = 'heads' if random.randint(0, 1) == 1 else 'tails'
             await message.channel.send(response)
+
+        if message.content == 'date':
+            await message.channel.send(datetime.date.today())
+
+        if message.content == 'time':
+            await message.channel.send(datetime.datetime.now().strftime("%I:%M%p"))
 
 
 client = CustomClient()
